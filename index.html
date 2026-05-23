@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IURIS — Legal Intelligence Powered by AI</title>
+  <meta name="description" content="AI-powered legal platform specialized in Mexican and UAE law. 1,590 MX laws + 122 UAE laws indexed. Expert legal answers 24/7." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#030712',
+              900: '#0a0e1a',
+              800: '#0f1628',
+              700: '#161e38',
+              600: '#1e2a4a',
+              500: '#253258',
+            },
+            gold: {
+              50:  '#fffbeb',
+              100: '#fef3c7',
+              200: '#fde68a',
+              300: '#fcd34d',
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706',
+              700: '#b45309',
+            },
+          },
+          fontFamily: {
+            serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0e1a; }
+    ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 3px; }
+
+    /* Hero background pattern */
+    .hero-bg {
+      background-color: #0a0e1a;
+      background-image:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(217,119,6,0.12) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%231e2a4a' stroke-width='1'%3E%3Cpath d='M0 40h80M40 0v80M0 0l80 80M80 0L0 80'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Scales SVG watermark */
+    .scales-watermark {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%231e2a4a' stroke-width='1.2'%3E%3Cline x1='50' y1='10' x2='50' y2='80'/%3E%3Cline x1='20' y1='25' x2='80' y2='25'/%3E%3Ccircle cx='20' cy='40' r='10'/%3E%3Ccircle cx='80' cy='40' r='10'/%3E%3Cpath d='M30 40 Q25 30 20 40'/%3E%3Cpath d='M70 40 Q75 30 80 40'/%3E%3Crect x='40' y='78' width='20' height='4'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center right 5%;
+      background-size: 340px;
+      opacity: 0.4;
+    }
+
+    .card-hover {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 24px rgba(217,119,6,0.2);
+      border-color: rgba(217,119,6,0.5);
+    }
+
+    .gold-glow {
+      box-shadow: 0 0 20px rgba(217,119,6,0.35);
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #d97706;
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Step connector line */
+    .step-line {
+      background: linear-gradient(90deg, transparent, #d97706 50%, transparent);
+    }
+  </style>
+</head>
+<body class="bg-navy-900 text-gray-200 antialiased">
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-navy-900/95 backdrop-blur border-b border-navy-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3">
+          <span class="font-serif text-2xl font-bold text-gold-400 tracking-widest">IURIS</span>
+          <span class="hidden sm:block text-xs text-gray-500 tracking-[0.3em] uppercase border-l border-navy-600 pl-3">Legal Intelligence</span>
+        </a>
+
+        <!-- Desktop links -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#features"  class="nav-link text-sm text-gray-400 hover:text-gray-100 transition-colors">Features</a>
+          <a href="#coverage"  class="nav-link text-sm text-gray-400 hover:text-gray-100 transition-colors">Coverage</a>
+          <a href="#pricing"   class="nav-link text-sm text-gray-400 hover:text-gray-100 transition-colors">Pricing</a>
+          <a href="#contact"   class="nav-link text-sm text-gray-400 hover:text-gray-100 transition-colors">Contact</a>
+        </div>
+
+        <!-- CTA -->
+        <a href="#early-access"
+           class="border border-gold-600 text-gold-400 hover:bg-gold-600 hover:text-navy-900 text-sm font-semibold px-5 py-2 rounded transition-all duration-200">
+          Request Access
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero-bg scales-watermark min-h-screen flex flex-col justify-center pt-16" id="hero">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 border border-gold-700/40 bg-gold-900/10 text-gold-400 text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-8">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-gold-400 animate-pulse"></span>
+        Beta · Early Access Open
+      </div>
+
+      <!-- Headline -->
+      <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight max-w-4xl mb-6">
+        AI-Powered<br />
+        <span class="text-gold-400">Legal Intelligence</span>
+      </h1>
+
+      <!-- Subheadline -->
+      <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mb-12 leading-relaxed">
+        Your expert legal consultant — available 24/7.<br class="hidden sm:block" />
+        Specialized in <strong class="text-gray-200">Mexican</strong> and <strong class="text-gray-200">UAE law</strong>,
+        with deep jurisdiction-specific agents trained on primary legislation.
+      </p>
+
+      <!-- Stats row -->
+      <div class="flex flex-wrap gap-6 mb-14">
+        <div class="flex flex-col">
+          <span class="font-serif text-3xl font-bold text-gold-400">1,590</span>
+          <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">MX Laws Indexed</span>
+        </div>
+        <div class="w-px bg-navy-600 self-stretch"></div>
+        <div class="flex flex-col">
+          <span class="font-serif text-3xl font-bold text-gold-400">122</span>
+          <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">UAE Laws Indexed</span>
+        </div>
+        <div class="w-px bg-navy-600 self-stretch"></div>
+        <div class="flex flex-col">
+          <span class="font-serif text-3xl font-bold text-gold-400">8</span>
+          <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Specialist Agents</span>
+        </div>
+        <div class="w-px bg-navy-600 self-stretch"></div>
+        <div class="flex flex-col">
+          <span class="font-serif text-3xl font-bold text-gold-400">24/7</span>
+          <span class="text-xs text-gray-500 uppercase tracking-wider mt-1">Available</span>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap gap-4">
+        <a href="#early-access"
+           class="bg-gold-600 hover:bg-gold-500 text-navy-900 font-bold text-sm px-8 py-3.5 rounded gold-glow transition-all duration-200">
+          Request Early Access
+        </a>
+        <a href="#how-it-works"
+           class="border border-navy-600 hover:border-gold-700 text-gray-300 hover:text-gold-400 font-semibold text-sm px-8 py-3.5 rounded transition-all duration-200">
+          See How It Works ↓
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="bg-navy-800 py-24" id="how-it-works">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs uppercase tracking-[0.3em] font-semibold mb-3">Process</p>
+        <h2 class="font-serif text-4xl font-bold text-white">How It Works</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+
+        <!-- Step 1 -->
+        <div class="relative bg-navy-700 border border-navy-600 rounded-xl p-8 card-hover">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gold-600/20 border border-gold-600/40 flex items-center justify-center">
+              <span class="font-serif font-bold text-gold-400 text-sm">01</span>
+            </div>
+            <div class="h-px flex-1 bg-navy-600 hidden md:block"></div>
+          </div>
+          <div class="text-3xl mb-4">💬</div>
+          <h3 class="font-serif text-xl font-semibold text-white mb-3">Ask Your Question</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Type your legal question in plain language — no legal jargon required. Available in English and Spanish.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative bg-navy-700 border border-navy-600 rounded-xl p-8 card-hover">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gold-600/20 border border-gold-600/40 flex items-center justify-center">
+              <span class="font-serif font-bold text-gold-400 text-sm">02</span>
+            </div>
+            <div class="h-px flex-1 bg-navy-600 hidden md:block"></div>
+          </div>
+          <div class="text-3xl mb-4">⚖️</div>
+          <h3 class="font-serif text-xl font-semibold text-white mb-3">AI Agent Analyzes</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            IURIS routes your query to the right specialist agent — constitutional, commercial, criminal, or UAE law — and searches the relevant legislation.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative bg-navy-700 border border-navy-600 rounded-xl p-8 card-hover">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-gold-600/20 border border-gold-600/40 flex items-center justify-center">
+              <span class="font-serif font-bold text-gold-400 text-sm">03</span>
+            </div>
+          </div>
+          <div class="text-3xl mb-4">📋</div>
+          <h3 class="font-serif text-xl font-semibold text-white mb-3">Get Expert Answer</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Receive a structured, cited response with references to specific articles, laws, and jurisprudence — actionable and ready for professional use.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPECIALIST AGENTS ===== -->
+  <section class="bg-navy-900 py-24" id="features">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs uppercase tracking-[0.3em] font-semibold mb-3">Meet The Team</p>
+        <h2 class="font-serif text-4xl font-bold text-white">Specialist Legal Agents</h2>
+        <p class="text-gray-400 mt-4 max-w-xl mx-auto text-sm leading-relaxed">
+          Each agent is trained exclusively in their domain — delivering focused, authoritative expertise without generalist noise.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Dr. Magna -->
+        <div class="bg-navy-800 border border-navy-600 rounded-xl p-6 card-hover">
+          <div class="text-4xl mb-4">🏛️</div>
+          <div class="inline-block bg-gold-600/15 text-gold-400 text-xs font-semibold px-2.5 py-1 rounded mb-3 tracking-wide">MX · Constitutional</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-2">Dr. Magna</h3>
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">Constitutional &amp; Amparo</p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            MX Constitutional Law specialist. Expert in amparo proceedings, fundamental rights, and Supreme Court jurisprudence.
+          </p>
+        </div>
+
+        <!-- Lex Mercantil -->
+        <div class="bg-navy-800 border border-navy-600 rounded-xl p-6 card-hover">
+          <div class="text-4xl mb-4">📜</div>
+          <div class="inline-block bg-gold-600/15 text-gold-400 text-xs font-semibold px-2.5 py-1 rounded mb-3 tracking-wide">MX · Commercial</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-2">Lex Mercantil</h3>
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">Commercial &amp; Corporate</p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Contracts, company formation, commercial disputes, and mercantile law under the Mexican Commercial Code.
+          </p>
+        </div>
+
+        <!-- Fatima Al-Qanoon -->
+        <div class="bg-navy-800 border border-navy-600 rounded-xl p-6 card-hover">
+          <div class="text-4xl mb-4">🕌</div>
+          <div class="inline-block bg-blue-500/15 text-blue-400 text-xs font-semibold px-2.5 py-1 rounded mb-3 tracking-wide">UAE · Federal</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-2">Fatima Al-Qanoon</h3>
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">UAE Law</p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Federal and emirate-level regulations, DIFC law, free zone compliance, and cross-border business in the UAE.
+          </p>
+        </div>
+
+        <!-- Dr. Penal -->
+        <div class="bg-navy-800 border border-navy-600 rounded-xl p-6 card-hover">
+          <div class="text-4xl mb-4">🔨</div>
+          <div class="inline-block bg-red-500/15 text-red-400 text-xs font-semibold px-2.5 py-1 rounded mb-3 tracking-wide">MX · Criminal</div>
+          <h3 class="font-serif text-lg font-bold text-white mb-2">Dr. Penal</h3>
+          <p class="text-gray-500 text-xs font-semibold uppercase tracking-wider mb-3">Criminal Law</p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Criminal procedure, defense strategy, federal and state penal codes, and criminal liability analysis.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COVERAGE ===== -->
+  <section class="bg-navy-800 py-24" id="coverage">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs uppercase tracking-[0.3em] font-semibold mb-3">Jurisdictions</p>
+        <h2 class="font-serif text-4xl font-bold text-white">Legal Coverage</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Mexico -->
+        <div class="bg-navy-700 border border-navy-600 rounded-xl p-8 card-hover">
+          <div class="flex items-center gap-4 mb-8">
+            <span class="text-4xl">🇲🇽</span>
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-white">Mexico</h3>
+              <p class="text-gray-400 text-sm">Federal jurisdiction + all 32 states</p>
+            </div>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-gold-600/20 border border-gold-600/40 flex items-center justify-center text-gold-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">1,590 Federal Laws</p>
+                <p class="text-gray-500 text-xs mt-0.5">Complete DOF corpus — Constitution, civil, commercial, criminal, labor, and administrative codes</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-gold-600/20 border border-gold-600/40 flex items-center justify-center text-gold-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">Supreme Court Jurisprudence</p>
+                <p class="text-gray-500 text-xs mt-0.5">SCJN tesis aisladas and jurisprudencia with citation support</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-gold-600/20 border border-gold-600/40 flex items-center justify-center text-gold-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">Constitutional Analysis</p>
+                <p class="text-gray-500 text-xs mt-0.5">Amparo proceedings, fundamental rights, constitutional interpretation</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-gold-600/20 border border-gold-600/40 flex items-center justify-center text-gold-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">Regulatory &amp; Administrative</p>
+                <p class="text-gray-500 text-xs mt-0.5">SAT, IMSS, COFEPRIS, SEMARNAT, and sector-specific regulations</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- UAE -->
+        <div class="bg-navy-700 border border-navy-600 rounded-xl p-8 card-hover">
+          <div class="flex items-center gap-4 mb-8">
+            <span class="text-4xl">🇦🇪</span>
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-white">United Arab Emirates</h3>
+              <p class="text-gray-400 text-sm">Federal + DIFC + Free Zones</p>
+            </div>
+          </div>
+          <ul class="space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">122 Federal Laws</p>
+                <p class="text-gray-500 text-xs mt-0.5">UAE federal decrees, civil transactions, commercial companies, and labor law</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">DIFC Regulations</p>
+                <p class="text-gray-500 text-xs mt-0.5">Dubai International Financial Centre laws and DFSA regulations</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">Free Zone Compliance</p>
+                <p class="text-gray-500 text-xs mt-0.5">JAFZA, DAFZA, ADGM, and other free zone authorities</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-xs">✓</span>
+              <div>
+                <p class="text-white text-sm font-semibold">Business Setup &amp; Foreign Investment</p>
+                <p class="text-gray-500 text-xs mt-0.5">Company incorporation, visa regulations, and cross-border compliance</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section class="bg-navy-900 py-24" id="pricing">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-16">
+        <p class="text-gold-500 text-xs uppercase tracking-[0.3em] font-semibold mb-3">Plans</p>
+        <h2 class="font-serif text-4xl font-bold text-white">Simple, Transparent Pricing</h2>
+        <p class="text-gray-400 mt-4 text-sm">Start free. Scale as your practice grows.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+
+        <!-- Free -->
+        <div class="bg-navy-800 border border-navy-600 rounded-xl p-8 flex flex-col card-hover">
+          <div class="mb-8">
+            <h3 class="font-serif text-xl font-bold text-white mb-1">Free</h3>
+            <p class="text-gray-500 text-sm">For individual exploration</p>
+          </div>
+          <div class="mb-8">
+            <span class="font-serif text-5xl font-bold text-white">$0</span>
+            <span class="text-gray-500 text-sm ml-2">/month</span>
+          </div>
+          <ul class="space-y-3 flex-1 mb-8">
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> 5 queries per day
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> Basic agents (2 jurisdictions)
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> Email support
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-400">
+              <span class="text-gray-600">✗</span> Document analysis
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-400">
+              <span class="text-gray-600">✗</span> API access
+            </li>
+          </ul>
+          <a href="#early-access"
+             class="block text-center border border-navy-500 hover:border-gold-700 text-gray-300 hover:text-gold-400 font-semibold text-sm px-6 py-3 rounded transition-all duration-200">
+            Get Started Free
+          </a>
+        </div>
+
+        <!-- Pro — highlighted -->
+        <div class="relative bg-navy-800 border-2 border-gold-600 rounded-xl p-8 flex flex-col gold-glow">
+          <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+            <span class="bg-gold-600 text-navy-900 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-wider">Most Popular</span>
+          </div>
+          <div class="mb-8 mt-2">
+            <h3 class="font-serif text-xl font-bold text-white mb-1">Pro</h3>
+            <p class="text-gray-400 text-sm">For legal professionals &amp; firms</p>
+          </div>
+          <div class="mb-8">
+            <span class="font-serif text-5xl font-bold text-gold-400">$29</span>
+            <span class="text-gray-400 text-sm ml-2">/month</span>
+          </div>
+          <ul class="space-y-3 flex-1 mb-8">
+            <li class="flex items-center gap-3 text-sm text-gray-200">
+              <span class="text-gold-400">✓</span> Unlimited queries
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-200">
+              <span class="text-gold-400">✓</span> All specialist agents
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-200">
+              <span class="text-gold-400">✓</span> Priority support
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-200">
+              <span class="text-gold-400">✓</span> Document analysis (PDF)
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-200">
+              <span class="text-gold-400">✓</span> Export &amp; citation tools
+            </li>
+          </ul>
+          <a href="#early-access"
+             class="block text-center bg-gold-600 hover:bg-gold-500 text-navy-900 font-bold text-sm px-6 py-3 rounded transition-all duration-200">
+            Start Pro — $29/mo
+          </a>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="bg-navy-800 border border-navy-600 rounded-xl p-8 flex flex-col card-hover">
+          <div class="mb-8">
+            <h3 class="font-serif text-xl font-bold text-white mb-1">Enterprise</h3>
+            <p class="text-gray-500 text-sm">For law firms &amp; legal departments</p>
+          </div>
+          <div class="mb-8">
+            <span class="font-serif text-5xl font-bold text-white">Custom</span>
+          </div>
+          <ul class="space-y-3 flex-1 mb-8">
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> REST API access
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> Custom agent training
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> SLA &amp; uptime guarantee
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> Dedicated support manager
+            </li>
+            <li class="flex items-center gap-3 text-sm text-gray-300">
+              <span class="text-gold-500">✓</span> On-premise deployment option
+            </li>
+          </ul>
+          <a href="mailto:legal@zumaintelligence.com"
+             class="block text-center border border-navy-500 hover:border-gold-700 text-gray-300 hover:text-gold-400 font-semibold text-sm px-6 py-3 rounded transition-all duration-200">
+            Contact Sales
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EARLY ACCESS FORM ===== -->
+  <section class="bg-navy-800 py-24" id="early-access">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="text-center mb-12">
+        <p class="text-gold-500 text-xs uppercase tracking-[0.3em] font-semibold mb-3">Beta Program</p>
+        <h2 class="font-serif text-4xl font-bold text-white mb-4">Join the Beta</h2>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          We're onboarding legal professionals and law firms.<br />
+          <strong class="text-gold-400">Limited spots available.</strong> Apply now for priority access.
+        </p>
+      </div>
+
+      <form id="contact"
+            class="bg-navy-700 border border-navy-600 rounded-xl p-8 space-y-5"
+            onsubmit="handleSubmit(event)">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div>
+            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2" for="name">Full Name</label>
+            <input id="name" type="text" required placeholder="Alejandro García"
+                   class="w-full bg-navy-800 border border-navy-500 focus:border-gold-600 text-gray-100 placeholder-gray-600 text-sm px-4 py-3 rounded outline-none transition-colors" />
+          </div>
+          <div>
+            <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2" for="email">Email Address</label>
+            <input id="email" type="email" required placeholder="you@lawfirm.com"
+                   class="w-full bg-navy-800 border border-navy-500 focus:border-gold-600 text-gray-100 placeholder-gray-600 text-sm px-4 py-3 rounded outline-none transition-colors" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2" for="company">Company / Law Firm</label>
+          <input id="company" type="text" placeholder="García &amp; Asociados, S.C."
+                 class="w-full bg-navy-800 border border-navy-500 focus:border-gold-600 text-gray-100 placeholder-gray-600 text-sm px-4 py-3 rounded outline-none transition-colors" />
+        </div>
+
+        <div>
+          <label class="block text-xs text-gray-400 uppercase tracking-wider mb-2" for="specialty">Legal Specialty</label>
+          <select id="specialty"
+                  class="w-full bg-navy-800 border border-navy-500 focus:border-gold-600 text-gray-100 text-sm px-4 py-3 rounded outline-none transition-colors appearance-none">
+            <option value="" class="text-gray-600">Select your specialty...</option>
+            <option value="constitutional">Constitutional Law</option>
+            <option value="commercial">Commercial &amp; Corporate</option>
+            <option value="criminal">Criminal Law</option>
+            <option value="labor">Labor &amp; Employment</option>
+            <option value="tax">Tax &amp; Fiscal</option>
+            <option value="uae">UAE / International</option>
+            <option value="administrative">Administrative Law</option>
+            <option value="ip">Intellectual Property</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button type="submit"
+                class="w-full bg-gold-600 hover:bg-gold-500 text-navy-900 font-bold text-sm px-6 py-3.5 rounded gold-glow transition-all duration-200">
+          Request Early Access →
+        </button>
+
+        <p class="text-center text-gray-600 text-xs">
+          No spam. No commitment. We'll reach out within 24 hours.
+        </p>
+      </form>
+
+      <!-- Success message (hidden by default) -->
+      <div id="success-msg" class="hidden text-center mt-6 bg-gold-900/20 border border-gold-700/30 rounded-xl p-6">
+        <div class="text-3xl mb-3">✅</div>
+        <h3 class="font-serif text-xl font-bold text-gold-400 mb-2">Application Received</h3>
+        <p class="text-gray-400 text-sm">Thank you! We'll review your application and be in touch within 24 hours.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-navy-950 border-t border-navy-700 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <!-- Logo + tagline -->
+        <div class="text-center md:text-left">
+          <span class="font-serif text-xl font-bold text-gold-400 tracking-widest">IURIS</span>
+          <p class="text-gray-600 text-xs mt-1">Legal Intelligence · Powered by ZumaIntelligence</p>
+        </div>
+
+        <!-- Links -->
+        <div class="flex items-center gap-6 text-xs text-gray-500">
+          <a href="#features"  class="hover:text-gold-400 transition-colors">Features</a>
+          <a href="#coverage"  class="hover:text-gold-400 transition-colors">Coverage</a>
+          <a href="#pricing"   class="hover:text-gold-400 transition-colors">Pricing</a>
+          <a href="mailto:legal@zumaintelligence.com" class="hover:text-gold-400 transition-colors">Contact</a>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-gray-600 text-xs text-center md:text-right">
+          © 2026 IURIS · <a href="mailto:legal@zumaintelligence.com" class="hover:text-gold-400 transition-colors">legal@zumaintelligence.com</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple form handler — replace with real backend / Formspree / n8n webhook
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contact');
+      const msg  = document.getElementById('success-msg');
+      form.style.display = 'none';
+      msg.classList.remove('hidden');
+      // TODO: POST to webhook
+      // fetch('https://your-n8n-webhook/iuris-beta', { method: 'POST', body: new FormData(form) });
+    }
+
+    // Smooth active nav link highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks  = document.querySelectorAll('a[href^="#"]');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.classList.toggle('text-gold-400', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
